@@ -1,0 +1,6 @@
+{
+  "name": "清明雅集",
+  "description": "《清明雅集》是一款以宋代美学为主题、融合2048合成玩法与古风文化收集元素的益智休闲游戏。拥有点茶、雅集、文人奇遇、图鉴、商城、活动等深度系统。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
