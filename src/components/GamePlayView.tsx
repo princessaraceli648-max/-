@@ -317,9 +317,9 @@ export const GamePlayView: React.FC<GamePlayProps> = ({ player, setPlayer, onNav
     // Experience calculation
     const expHeuristic = Math.floor(finalPoints / 10) + (result.mergedLevels.length * 4);
 
-    // Determine if we trigger a Literati Character Encounter (8% chance per successful slide)
+    // Determine if we trigger a Literati Character Encounter (2.5% chance per successful slide)
     let triggeredEncounter: LiteratiCharacter | null = null;
-    if (Math.random() < 0.08 && !encounter) {
+    if (Math.random() < 0.025 && !encounter) {
       triggeredEncounter = LITERATI_POOL[Math.floor(Math.random() * LITERATI_POOL.length)];
       SoundManager.playEncounter(settings.soundOn);
     }
@@ -705,7 +705,7 @@ export const GamePlayView: React.FC<GamePlayProps> = ({ player, setPlayer, onNav
                   animate={{ scale: 1, opacity: 1 }}
                   exit={{ scale: 0.7, opacity: 0 }}
                   transition={{ type: 'spring', stiffness: 350, damping: 25 }}
-                  className={`absolute w-[22%] h-[22%] flex flex-col justify-between items-center p-1.5 cursor-grab shadow-md rounded-md border text-center transition-all hover:scale-105 active:scale-95 duration-200 hover:shadow-xl ${artifact.gradient} ${artifact.borderColor} overflow-hidden`}
+                  className={`absolute w-[22%] h-[22%] flex flex-col justify-between items-center p-1 cursor-grab shadow-md rounded-md border text-center transition-all hover:scale-105 active:scale-95 duration-200 hover:shadow-xl ${artifact.gradient} ${artifact.borderColor} overflow-hidden`}
                   style={{
                     top: `${t.row * 24.8 + 1.2}%`,
                     left: `${t.col * 24.8 + 1.2}%`,
@@ -717,48 +717,47 @@ export const GamePlayView: React.FC<GamePlayProps> = ({ player, setPlayer, onNav
                         : undefined,
                   }}
                 >
-                  {/* Real artifact picture background with higher visibility and vibrancy */}
+                  {/* Real artifact picture frame - highly distinct, centered, pristine brightness */}
                   {artifact.imageUrl && (
-                    <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
+                    <div className="w-full h-[52%] relative rounded overflow-hidden bg-[#F2ECD8] border border-stone-800/20 shadow-inner flex items-center justify-center z-10">
                       <img
                         src={artifact.imageUrl}
                         alt={artifact.name}
                         referrerPolicy="no-referrer"
-                        className="w-full h-full object-cover filter brightness-[0.72] saturate-[1.25] contrast-[1.1] transition-transform duration-500 hover:scale-110"
+                        className="w-full h-full object-cover filter brightness-[1.05] saturate-[1.12] contrast-[1.02] transition-transform duration-500 hover:scale-110"
                       />
-                      {/* Rich ambient vignette shadow at bottom for high legibility */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/55" />
+                      {/* Shimmering glass sweep highlight */}
+                      <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden z-20">
+                        <div 
+                          className="w-1/2 h-full bg-gradient-to-r from-transparent via-white/35 to-transparent absolute top-0 -left-[50%]"
+                          style={{ 
+                            animation: 'shimmerSweep 4.5s infinite ease-in-out',
+                            animationDelay: `${(t.row * 4 + t.col) * 350}ms`
+                          }}
+                        />
+                      </div>
                     </div>
                   )}
 
-                  {/* Shimmering glass sweep highlight staggered by tile position */}
-                  <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden z-10">
-                    <div 
-                      className="w-1/2 h-full bg-gradient-to-r from-transparent via-white/25 to-transparent absolute top-0 -left-[50%]"
-                      style={{ 
-                        animation: 'shimmerSweep 4.5s infinite ease-in-out',
-                        animationDelay: `${(t.row * 4 + t.col) * 350}ms`
-                      }}
-                    />
-                  </div>
+                  {/* Level tag and Name details - elegant layout on bottom block to avoid any overlapping */}
+                  <div className="w-full flex-1 flex flex-col justify-between items-center mt-1 z-10">
+                    {/* Tiny stats info */}
+                    <div className="w-full flex justify-between items-center text-[7.5px] px-[2px] font-serif leading-none h-[10px] text-stone-200 font-bold">
+                      <span>等第 {t.level}</span>
+                      {isLegendary && <Sparkles size={6} className="text-[#F1C40F] animate-pulse shrink-0" />}
+                    </div>
 
-                  {/* Item level badge with elegant bronze stamp look */}
-                  <div className="self-start text-[8.5px] px-1 bg-[#3D2F22]/95 text-[#F1EAD9] border border-[#C8A55A]/70 rounded-sm font-black font-mono tracking-tighter leading-none py-[1.5px] flex items-center space-x-[2px] z-10 shadow-sm relative">
-                    <span className="font-extrabold">等级 {t.level}</span>
-                    {isLegendary && <Sparkles size={7} className="text-[#F1C40F] animate-pulse" />}
-                  </div>
+                    {/* Highly legible horizontal name */}
+                    <div className="w-full text-center flex items-center justify-center h-5 overflow-hidden">
+                      <span className="text-[9px] font-black leading-none text-[#FAF4EC] drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)] font-serif tracking-tight w-full truncate">
+                        {artifact.name.slice(0, 5)}
+                      </span>
+                    </div>
 
-                  {/* Core Calligraphy artifact name with stark high contrast drop shadow */}
-                  <div
-                    className="font-serif text-[10.5px] leading-tight font-black text-[#FAF4EC] drop-shadow-[0_2px_4px_rgba(0,0,0,1)] writing-vertical tracking-tight h-14 overflow-hidden flex items-center justify-center z-10 relative font-serif"
-                    style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.95), -1px -1px 3px rgba(0, 0, 0, 0.9)' }}
-                  >
-                    {artifact.name.slice(0, 5)}
-                  </div>
-
-                  {/* Mini Vermilion Red Seal tag */}
-                  <div className="self-end text-[7px] font-bold text-red-100 bg-[#C8102E]/95 rounded-sm leading-none px-[2px] py-[1.5px] border border-red-500 scale-90 z-10 shadow-sm shadow-black/50 font-serif">
-                    印
+                    {/* Small stamp label */}
+                    <div className="text-[6px] scale-90 font-bold text-red-100 bg-[#C8102E]/95 rounded-sm px-[2.5px] py-[0.5px] border border-red-500/50 leading-none">
+                      印
+                    </div>
                   </div>
                 </motion.div>
               );
@@ -1070,7 +1069,7 @@ export const GamePlayView: React.FC<GamePlayProps> = ({ player, setPlayer, onNav
                     src={ARTIFACTS_DB[victoryCelebration].imageUrl}
                     alt={ARTIFACTS_DB[victoryCelebration].name}
                     referrerPolicy="no-referrer"
-                    className="w-20 h-20 object-cover rounded-sm border border-yellow-500/50 shadow-md z-10 filter saturate-90 contrast-105 transform hover:scale-105 transition-transform"
+                    className="w-20 h-20 object-cover rounded-sm border border-yellow-500/50 shadow-md z-10 filter saturate-110 contrast-102 transform hover:scale-105 transition-transform"
                   />
                 ) : (
                   <span className="text-[60px] select-none z-10 animate-pulse">

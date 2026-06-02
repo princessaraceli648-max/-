@@ -92,23 +92,83 @@ export const SongAestheticBackground: React.FC<BackgroundProps> = ({ skin, trail
       }
 
       draw(c: CanvasRenderingContext2D) {
-        c.beginPath();
-        if (skin === 'ink') {
-          // Soft watercolor ink drops
-          c.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-          const radGrad = c.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
+        if (skin === 'palace') {
+          // Palace: Gold flaked square (金箔方块形状)
+          c.save();
+          c.translate(this.x, this.y);
+          c.rotate(this.sinVal * 0.3);
+          c.fillStyle = this.color + this.opacity + ')';
+          c.fillRect(-this.size, -this.size, this.size * 1.8, this.size * 1.8);
+          c.restore();
+        } else if (skin === 'ink') {
+          // Ink: Soft, organic brush ink spot (毛笔墨点形状)
+          c.save();
+          c.translate(this.x, this.y);
+          c.rotate(this.sinVal * 0.12);
+          c.scale(1, 0.82); // Elongated ink blob
+          c.beginPath();
+          c.arc(0, 0, this.size, 0, Math.PI * 2);
+          const radGrad = c.createRadialGradient(-this.size * 0.15, -this.size * 0.15, 0, 0, 0, this.size);
           radGrad.addColorStop(0, this.color + this.opacity + ')');
+          radGrad.addColorStop(0.65, this.color + (this.opacity * 0.5) + ')');
           radGrad.addColorStop(1, this.color + '0)');
           c.fillStyle = radGrad;
+          c.fill();
+          
+          // Small splatter satellite drop to simulate wet rice paper bleeding
+          if (this.size > 5.5) {
+            c.beginPath();
+            c.arc(this.size * 0.55, this.size * 0.35, this.size * 0.22, 0, Math.PI * 2);
+            c.fillStyle = this.color + (this.opacity * 0.4) + ')';
+            c.fill();
+          }
+          c.restore();
+        } else if (skin === 'bamboo') {
+          // Bamboo: elegant micro bamboo leaf shape
+          c.save();
+          c.translate(this.x, this.y);
+          c.rotate(this.sinVal * 0.45);
+          c.fillStyle = this.color + this.opacity + ')';
+          c.beginPath();
+          c.moveTo(0, -this.size * 1.4);
+          c.quadraticCurveTo(this.size * 0.45, 0, 0, this.size * 1.4);
+          c.quadraticCurveTo(-this.size * 0.45, 0, 0, -this.size * 1.4);
+          c.fill();
+          c.restore();
+        } else if (skin === 'celadon') {
+          // Celadon: dew droplets or glaze bubbles
+          c.beginPath();
+          c.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          c.fillStyle = this.color + (this.opacity * 0.85) + ')';
+          c.fill();
+          // Micro glare highlight representing porcelain luster
+          c.beginPath();
+          c.arc(this.x - this.size * 0.3, this.y - this.size * 0.3, this.size * 0.18, 0, Math.PI * 2);
+          c.fillStyle = `rgba(255, 255, 255, ${this.opacity * 0.9})`;
+          c.fill();
+        } else if (skin === 'sunset') {
+          // Sunset: Warm glowing cherry blossom petal
+          c.save();
+          c.translate(this.x, this.y);
+          c.rotate(this.sinVal * 0.4);
+          c.fillStyle = this.color + this.opacity + ')';
+          c.beginPath();
+          c.moveTo(0, -this.size);
+          c.quadraticCurveTo(this.size * 0.7, -this.size * 0.2, this.size * 0.2, this.size);
+          c.quadraticCurveTo(-this.size * 0.5, this.size * 0.3, 0, -this.size);
+          c.fill();
+          c.restore();
         } else {
+          // Default starglow circle pattern
+          c.beginPath();
           c.arc(this.x, this.y, this.size, 0, Math.PI * 2);
           c.fillStyle = this.color + this.opacity + ')';
+          c.fill();
         }
-        c.fill();
       }
     }
 
-    const particles: AestheticParticle[] = Array.from({ length: 40 }, () => new AestheticParticle());
+    const particles: AestheticParticle[] = Array.from({ length: 32 }, () => new AestheticParticle());
 
     // Mouse Trail effect implementation
     class TrailParticle {
@@ -285,6 +345,12 @@ export const SongAestheticBackground: React.FC<BackgroundProps> = ({ skin, trail
           const py = lastY + (y - lastY) * t;
           trailParticles.push(new TrailParticle(px, py));
         }
+        
+        // Strict buffer ceiling of 80 to prevent memory leak / high cost
+        if (trailParticles.length > 80) {
+          trailParticles.splice(0, trailParticles.length - 80);
+        }
+
         lastX = x;
         lastY = y;
       }
@@ -303,13 +369,33 @@ export const SongAestheticBackground: React.FC<BackgroundProps> = ({ skin, trail
         p.vy = Math.sin(angle) * speed;
         trailParticles.push(p);
       }
+
+      // Constrain queue sizes
+      if (trailParticles.length > 80) {
+        trailParticles.splice(0, trailParticles.length - 80);
+      }
     };
 
     window.addEventListener('pointermove', handlePointerMove);
     window.addEventListener('pointerdown', handlePointerDown);
 
-    // Main animation loop
-    const render = () => {
+    // Main animation loop with performance optimization and throttled redraw frequency
+    let lastTime = 0;
+    const targetFPS = 36; // Capped refresh rate to dramatically reduce redraw frequency and maximize battery/CPU performance
+    const frameInterval = 1000 / targetFPS;
+
+    const render = (time: number) => {
+      animationFrameId = requestAnimationFrame(render);
+
+      // Skip background frames if page is hidden to save energy
+      if (document.hidden) return;
+
+      const elapsed = time - lastTime;
+      if (elapsed < frameInterval) return;
+
+      // Adjust lastTime ready for next tick
+      lastTime = time - (elapsed % frameInterval);
+
       ctx.clearRect(0, 0, width, height);
 
       // Background particles
@@ -327,11 +413,10 @@ export const SongAestheticBackground: React.FC<BackgroundProps> = ({ skin, trail
           trailParticles.splice(i, 1);
         }
       }
-
-      animationFrameId = requestAnimationFrame(render);
     };
 
-    render();
+    // Begin render on next tick passing high-resolution timestamp
+    animationFrameId = requestAnimationFrame(render);
 
     return () => {
       window.removeEventListener('resize', handleResize);

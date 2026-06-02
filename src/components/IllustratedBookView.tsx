@@ -132,30 +132,30 @@ export const IllustratedBookView: React.FC<BookProps> = ({ player, setPlayer, on
                   setSelectedArtifact(art);
                 }
               }}
-              className={`relative aspect-[5/6] w-full p-2.5 rounded-sm border shadow-sm transition-all flex flex-col justify-between items-center text-center ${
+              className={`relative aspect-[5/6] w-full p-2 rounded-md border-2 shadow-sm transition-all flex flex-col justify-between items-center text-center overflow-hidden ${
                 unlocked
-                  ? `bg-gradient-to-b ${art.gradient} ${art.borderColor} hover:shadow-md cursor-pointer`
-                  : 'bg-stone-100 border-stone-300 pointer-events-none opacity-45'
+                  ? 'bg-[#FAF6EE] border-[#6F8F72] hover:shadow-md cursor-pointer'
+                  : 'bg-stone-50 border-stone-200 pointer-events-none opacity-50'
               }`}
             >
-              <div className="w-full flex justify-between items-center text-[8px] font-mono opacity-80">
-                <span className={unlocked ? 'text-white/80' : 'text-stone-400'}>Lv{art.level}</span>
-                <span className={`px-1.5 py-0.2 rounded-sm border ${
-                  unlocked ? 'border-white/30 text-white bg-white/10' : 'border-stone-400 text-stone-500'
+              <div className="w-full flex justify-between items-center text-[9px] font-serif mb-1.5 z-10">
+                <span className={unlocked ? 'text-[#8A6A32] font-extrabold' : 'text-stone-400'}>阶 {art.level}</span>
+                <span className={`px-1.5 py-[1px] rounded text-[8px] leading-none ${
+                  unlocked ? 'border-[#8A6A32]/30 text-[#8A6A32] bg-[#8A6A32]/10' : 'border-stone-300 text-stone-400 font-bold'
                 }`}>
                   {art.type}
                 </span>
               </div>
 
-              {/* Core Visual Illustration symbol */}
-              <div className="my-2 flex flex-col items-center justify-center w-full h-16 relative overflow-hidden rounded-sm">
+              {/* Core Image Container: Beautifully framed with no dark filters or obstructions */}
+              <div className="w-full flex-1 min-h-[92px] max-h-[110px] my-1 relative overflow-hidden rounded border border-[#DFCEB3] bg-[#EFE9DD] shadow-inner flex items-center justify-center z-10">
                 {unlocked ? (
                   art.imageUrl ? (
                     <img
                       src={art.imageUrl}
                       alt={art.name}
                       referrerPolicy="no-referrer"
-                      className="w-14 h-14 object-cover rounded-sm border border-orange-200/40 shadow-sm transform transition-transform duration-300 hover:scale-110"
+                      className="w-full h-full object-cover filter saturate-[1.10] contrast-[1.02] brightness-100 transition-transform duration-500 hover:scale-110"
                     />
                   ) : (
                     <span className="text-3xl filter drop-shadow-md select-none transform transition-transform hover:scale-110">
@@ -163,21 +163,21 @@ export const IllustratedBookView: React.FC<BookProps> = ({ player, setPlayer, on
                     </span>
                   )
                 ) : (
-                  <Lock size={18} className="text-stone-400 animate-pulse" />
+                  <Lock size={16} className="text-stone-400 animate-pulse" />
                 )}
               </div>
 
-              {/* Text designation */}
-              <div className="w-full">
+              {/* Text designation with elegant layout contrast on clear background */}
+              <div className="w-full mt-1.5 z-10">
                 {unlocked ? (
                   <>
-                    <h3 className={`text-[11px] font-bold tracking-wider leading-tight text-white mb-0.5 font-serif`}>
+                    <h3 className="text-[11.5px] font-black tracking-wide leading-tight text-[#3A220F] font-serif truncate">
                       {art.name}
                     </h3>
-                    <span className="text-[8px] block text-stone-300 font-sans">{art.era} $\cdot$ {art.author}</span>
+                    <span className="text-[8px] block text-[#8F7D6B] font-sans mt-0.5">{art.era} $\cdot$ {art.author}</span>
                   </>
                 ) : (
-                  <span className="text-[10px] text-stone-500 font-serif">合成至 {art.level}级 解锁</span>
+                  <span className="text-[9.5px] text-stone-400 font-serif">合成即可解锁鉴赏</span>
                 )}
               </div>
             </motion.button>

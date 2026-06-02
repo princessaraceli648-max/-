@@ -18,7 +18,7 @@ export const ARTIFACTS_DB: { [key: number]: Artifact } = {
     gradient: 'from-[#2C313C] to-[#1F232B]',
     textColor: 'text-stone-300',
     borderColor: 'border-slate-700',
-    imageUrl: 'https://images.unsplash.com/photo-1576092762791-dd9e2220abd1?auto=format&fit=crop&q=80&w=400',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/14/Jian_ware_tea_bowl%2C_Song_dynasty%2C_reign_of_Huizong%2C_1101-1125_AD%2C_stoneware_with_iron-rich_glaze_-_Asian_Art_Museum_of_San_Francisco_-_DSC01389.JPG',
   },
   2: {
     level: 2,
@@ -31,7 +31,7 @@ export const ARTIFACTS_DB: { [key: number]: Artifact } = {
     gradient: 'from-[#739281] to-[#516E5D]',
     textColor: 'text-[#EAF3EC]',
     borderColor: 'border-[#8AAC97]',
-    imageUrl: 'https://images.unsplash.com/photo-1613274554329-70f997f5789f?auto=format&fit=crop&q=80&w=400',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/a/af/Celadon_bowl_with_lotus_petals%2C_Longquan_ware%2C_Southern_Song_dynasty%2C_1100s-1200s_AD%2C_stoneware_-_Guimet_Museum_-_DSC04066.jpg',
   },
   3: {
     level: 3,
@@ -44,7 +44,7 @@ export const ARTIFACTS_DB: { [key: number]: Artifact } = {
     gradient: 'from-[#82A9B8] to-[#598392]',
     textColor: 'text-[#F1F7F9]',
     borderColor: 'border-[#A3C8D6]',
-    imageUrl: 'https://images.unsplash.com/photo-1612196808214-b8e1d6145a8c?auto=format&fit=crop&q=80&w=400',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/5/52/Northern_Song_Ru_Ware_Vase.jpg',
   },
   4: {
     level: 4,
@@ -57,7 +57,7 @@ export const ARTIFACTS_DB: { [key: number]: Artifact } = {
     gradient: 'from-[#5D7A68] to-[#3B5445]',
     textColor: 'text-[#F4FAF5]',
     borderColor: 'border-[#7AA387]',
-    imageUrl: 'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&q=80&w=400',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/c/cc/Guan-ware_vase%2C_Southern_Song_dynasty.JPG',
   },
   5: {
     level: 5,
@@ -70,7 +70,7 @@ export const ARTIFACTS_DB: { [key: number]: Artifact } = {
     gradient: 'from-[#CFA25C] to-[#A4762E]',
     textColor: 'text-yellow-50',
     borderColor: 'border-[#DFC190]',
-    imageUrl: 'https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?auto=format&fit=crop&q=80&w=400',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/c/c5/Song_Dynasty_woodblock_printing.jpg',
   },
   6: {
     level: 6,
@@ -83,7 +83,7 @@ export const ARTIFACTS_DB: { [key: number]: Artifact } = {
     gradient: 'from-[#5C4D3C] to-[#3B2F22]',
     textColor: 'text-amber-10',
     borderColor: 'border-amber-700',
-    imageUrl: 'https://images.unsplash.com/photo-1507838153414-b4b713384a76?auto=format&fit=crop&q=80&w=400',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/d/d7/Zhongni-style_guqin_%E2%80%9CSong_Feng%E2%80%9D%2C_Song_Dynasty.jpg',
   },
   7: {
     level: 7,
@@ -96,7 +96,7 @@ export const ARTIFACTS_DB: { [key: number]: Artifact } = {
     gradient: 'from-[#4D5340] to-[#2E3325]',
     textColor: 'text-stone-200',
     borderColor: 'border-[#6F775B]',
-    imageUrl: 'https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&q=80&w=400',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/f/ff/Fan_Kuan_-_Travelers_among_Mountains_and_Streams_-_National_Palace_Museum.jpg',
   },
   8: {
     level: 8,
@@ -109,7 +109,7 @@ export const ARTIFACTS_DB: { [key: number]: Artifact } = {
     gradient: 'from-[#A85139] to-[#7B321F]',
     textColor: 'text-orange-100',
     borderColor: 'border-orange-300',
-    imageUrl: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=400',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/30/Su_Shi_calligraphy.jpg',
   },
   9: {
     level: 9,
@@ -122,7 +122,7 @@ export const ARTIFACTS_DB: { [key: number]: Artifact } = {
     gradient: 'from-[#8A7560] to-[#5C4C3C]',
     textColor: 'text-amber-50',
     borderColor: 'border-amber-300',
-    imageUrl: 'https://images.unsplash.com/photo-1545048702-79362596cdc9?auto=format&fit=crop&q=80&w=400',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/a/ac/Liu_Songnian_Tea_Competition.jpg',
   },
   10: {
     level: 10,
@@ -135,7 +135,7 @@ export const ARTIFACTS_DB: { [key: number]: Artifact } = {
     gradient: 'from-[#B39352] to-[#735A22]',
     textColor: 'text-stone-100',
     borderColor: 'border-yellow-600',
-    imageUrl: 'https://images.unsplash.com/photo-1547949003-9792a18a2601?auto=format&fit=crop&q=80&w=400',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/86/AlongtheRiver_Detail.jpg',
   },
   11: {
     level: 11,
@@ -148,7 +148,7 @@ export const ARTIFACTS_DB: { [key: number]: Artifact } = {
     gradient: 'from-[#735639] to-[#46311D]',
     textColor: 'text-zinc-100',
     borderColor: 'border-amber-600',
-    imageUrl: 'https://images.unsplash.com/photo-1511100277595-2aa2ebd4b851?auto=format&fit=crop&q=80&w=400',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/d/db/Huizong_poem.jpg',
   },
   12: {
     level: 12,
@@ -161,7 +161,7 @@ export const ARTIFACTS_DB: { [key: number]: Artifact } = {
     gradient: 'from-[#175C66] to-[#0A3D44]',
     textColor: 'text-[#E0F3F5]',
     borderColor: 'border-[#29A3B5]',
-    imageUrl: 'https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&fit=crop&q=80&w=400',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/ec/A_Thousand_Li_of_Rivers_and_Mountains.jpg',
   },
   13: {
     level: 13,
@@ -174,7 +174,7 @@ export const ARTIFACTS_DB: { [key: number]: Artifact } = {
     gradient: 'from-[#9F7A23] to-[#59420F]',
     textColor: 'text-yellow-100',
     borderColor: 'border-yellow-400',
-    imageUrl: 'https://images.unsplash.com/photo-1508193638397-1c4234db14d8?auto=format&fit=crop&q=80&w=400',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/b/b5/A_Literary_Gathering_by_Emperor_Huizong_of_Song.jpg',
   },
   14: {
     level: 14,
@@ -187,7 +187,7 @@ export const ARTIFACTS_DB: { [key: number]: Artifact } = {
     gradient: 'from-[#0A071B] via-[#101F42] to-[#402060]',
     textColor: 'text-[#EAF5FF]',
     borderColor: 'border-[#AB6CFF]',
-    imageUrl: 'https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?auto=format&fit=crop&q=80&w=400',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/18/Yohen_Tenmoku_tea_bowl_Inaba.jpg',
   },
   15: {
     level: 15,
@@ -200,7 +200,7 @@ export const ARTIFACTS_DB: { [key: number]: Artifact } = {
     gradient: 'from-[#FAF1DA] via-[#EDE0C4] to-[#C2AF8F]',
     textColor: 'text-[#3B2F22]',
     borderColor: 'border-[#DFC190]',
-    imageUrl: 'https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&q=80&w=400',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/White_Ding_ware_ceramic_pillow_in_the_shape_of_a_child%2C_Song_dynasty%2C_11th-12th_century_AD%2C_National_Palace_Museum_in_Taipei_-_DSC01314.jpg',
   },
   16: {
     level: 16,
@@ -213,9 +213,18 @@ export const ARTIFACTS_DB: { [key: number]: Artifact } = {
     gradient: 'from-[#6F8F72] via-[#CFA25C] to-[#121A16]',
     textColor: 'text-white',
     borderColor: 'border-[#F1C40F] shadow-xl shadow-amber-950/40 font-bold',
-    imageUrl: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&q=80&w=400',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/4e/Cranes_of_Good_Omen_by_Emperor_Huizong_of_Song.jpg',
   }
 };
+
+// Dynamically proxy all image URLs through wsrv.nl to bypass local network blockages (such as in Mainland China), resize them to 400px and convert to WebP to speed up asset loading.
+Object.keys(ARTIFACTS_DB).forEach((key) => {
+  const numKey = Number(key);
+  const art = ARTIFACTS_DB[numKey];
+  if (art && art.imageUrl && art.imageUrl.startsWith('http') && !art.imageUrl.includes('wsrv.nl')) {
+    art.imageUrl = `https://wsrv.nl/?url=${encodeURIComponent(art.imageUrl)}&w=400&output=webp&q=85`;
+  }
+});
 
 // Generates a random state tile
 const generateRandomTileId = (): string => {
